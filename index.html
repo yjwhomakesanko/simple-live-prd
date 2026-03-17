@@ -3,12 +3,125 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
+  <title>Cafe L'Aura - A Cozy Escape</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
   <link href='/style.css' rel='stylesheet'>
 </head>
-<body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+<body class="noise-texture">
+  <cafe-nav></cafe-nav>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Cafe L'Aura</h1>
+        <p>Experience the art of slow living through our craft coffee and artisanal desserts.</p>
+        <div class="cta-container">
+          <a href="#menu" class="btn primary">View Menu</a>
+          <a href="#contact" class="btn secondary">Book a Table</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about container">
+      <div class="about-grid">
+        <div class="about-text">
+          <span class="label">Our Story</span>
+          <h2>A legacy in every bean.</h2>
+          <p>Founded in 2012, Cafe L'Aura began as a small roasting shop in the heart of the city. We believe that coffee is more than just a beverage; it's a moment of clarity in a busy world.</p>
+          <p>Our beans are ethically sourced from sustainable farms, roasted daily to preserve their unique character, and served in an atmosphere designed for comfort and connection.</p>
+        </div>
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1501339817308-04b171f10573?auto=format&fit=crop&q=80&w=1000" alt="Cafe Atmosphere" class="about-img">
+        </div>
+      </div>
+    </section>
+
+    <section id="menu" class="menu container">
+      <div class="section-header">
+        <span class="label">Our Selection</span>
+        <h2>The Collection</h2>
+      </div>
+      <div class="menu-categories">
+        <div class="menu-category">
+          <h3>Coffee & Tea</h3>
+          <div class="menu-grid">
+            <menu-item name="Signature Espresso" price="4.50" desc="A balanced blend with notes of dark chocolate and citrus."></menu-item>
+            <menu-item name="Cloud Latte" price="5.50" desc="Our smooth espresso topped with ultra-fine steamed milk foam."></menu-item>
+            <menu-item name="Ceremonial Matcha" price="6.00" desc="Premium grade matcha whisked to perfection."></menu-item>
+          </div>
+        </div>
+        <div class="menu-category">
+          <h3>Sweets & Savory</h3>
+          <div class="menu-grid">
+            <menu-item name="Honey Lavender Cake" price="7.00" desc="A light, fragrant cake layered with honey-infused cream."></menu-item>
+            <menu-item name="Artisan Croissant" price="4.00" desc="Flaky, buttery pastry made with French cultured butter."></menu-item>
+            <menu-item name="Avocado Sourdough" price="12.00" desc="Fresh sourdough topped with lemon-zested avocado and seeds."></menu-item>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+      <div class="container">
+        <div class="section-header">
+          <span class="label">Visuals</span>
+          <h2>Step Into Our Space</h2>
+        </div>
+        <cafe-gallery></cafe-gallery>
+      </div>
+    </section>
+
+    <section id="contact" class="contact container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <span class="label">Visit Us</span>
+          <h2>Get in Touch</h2>
+          <div class="info-item">
+            <strong>Location</strong>
+            <p>123 Aura Street, Coffee District<br>City Center, CC 45678</p>
+          </div>
+          <div class="info-item">
+            <strong>Hours</strong>
+            <p>Mon - Fri: 7:00 AM - 8:00 PM<br>Sat - Sun: 8:00 AM - 9:00 PM</p>
+          </div>
+        </div>
+        <div class="contact-form">
+          <form id="reservation-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message/Inquiry</label>
+              <textarea id="message" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn primary">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <h3>Cafe L'Aura</h3>
+        <p>&copy; 2026 Cafe L'Aura. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+  </footer>
+
+  <script defer type="module" src="/main.js"></script>
 </body>
 </html>

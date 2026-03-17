@@ -1,31 +1,24 @@
-# Blueprint: Cafe L'Aura Website
+# Blueprint: Pulse Planning System
 
 ## Overview
-**Cafe L'Aura** is a premium, modern cafe introduction website designed to evoke a cozy and inviting atmosphere. The site leverages modern web standards (Baseline) to provide a polished, responsive, and interactive user experience.
+**Pulse Planning** is a "Living Planning System" that synchronizes AI insights with a structured, machine-readable planning document. This web app provides a dual-pane interface: a left-side AI agent chat and a right-side hierarchical planning viewer.
 
 ## Design & Features
 - **Visual Aesthetic:**
-    - **Color Palette:** Warm tones using `oklch()`. Creams, rich espresso browns, and soft sage accents.
-    - **Typography:** `Playfair Display` (serif) for headings and `Inter` (sans-serif) for body text.
-    - **Texture & Depth:** Subtle noise texture on the background and multi-layered soft shadows.
-    - **Theme Toggle:** Added support for Light and Dark modes.
+    - **Color Palette:** Professional "Deep Tech" look using `oklch()`. Dark slate backgrounds, vibrant electric blue/cyan accents, and clean white/gray text.
+    - **Typography:** `Inter` (sans-serif) for high legibility and a modern, functional feel.
+    - **Layout:** A split-pane view with a 40/60 ratio.
 - **Modern CSS (Baseline):**
-    - **Container Queries:** For responsive menu cards.
-    - **`:has()` Selector:** For interactive styling based on child states.
-    - **CSS Variables:** For consistent theming (`--bg`, `--text`, `--accent`, etc.).
+    - **CSS Grid & Flexbox:** For the main split-pane and hierarchical structure.
+    - **oklch() Colors:** For perceptually uniform transitions and vibrant accents.
 - **Interactivity & Web Components:**
-    - `<cafe-nav>`: Responsive navigation bar.
-    - `<menu-item>`: Menu item card component.
-    - `<cafe-gallery>`: Dynamic grid gallery.
-    - **Theme Toggle Implementation:** A dedicated component for switching between Light and Dark modes.
-- **Sections:**
-    - **Hero:** Impactful headline with a CTA.
-    - **About:** Brand story and atmosphere.
-    - **Menu:** Categorized list of items.
-    - **Gallery:** Visual showcase.
-    - **Contact:** Hours, location, and reservation form.
+    - `<pulse-chat>`: Left Pane. Manages AI conversation history and input.
+    - `<pulse-viewer>`: Right Pane. Root component for the hierarchical document.
+    - `<pulse-node>`: A recursive component representing Level 1 (Requirement) to Level 4 (Flow).
+- **Dynamic State:**
+    - Centralized state management for the planning document (JSON-based).
+    - Real-time updates mirroring the `requirements.md` structure.
 
 ## Detailed Implementation Log
-- **[Step 1] Initial Build:** (Completed) Implemented basic structure, oklch design system, and core Web Components (cafe-nav, menu-item, cafe-gallery).
-- **[Step 2] Content Polish:** (Completed) Added atmospheric imagery and refined navigation transitions.
-- **[Step 3] Dark Mode Integration:** (Completed) Implemented a theme toggle component, theme-aware oklch variables, and localStorage persistence.
+- **[Step 1] Project Initialization:** (Completed) Implemented the split-pane layout and core Web Components (`pulse-chat`, `pulse-viewer`, `pulse-node`). Established the "Deep Tech" oklch design system.
+- **[Step 2] Data Mapping & Polish:** Mapping the remaining PRD points to the hierarchical viewer and refining the AI agent interactions.

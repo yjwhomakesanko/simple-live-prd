@@ -1,5 +1,67 @@
 // Cafe L'Aura - Main JS (Web Components)
 
+class ThemeToggle extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
+
+  connectedCallback() {
+    this.render();
+    this.setupTheme();
+  }
+
+  setupTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    this.updateIcon(savedTheme);
+  }
+
+  toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    this.updateIcon(newTheme);
+  }
+
+  updateIcon(theme) {
+    const btn = this.shadowRoot.querySelector('.theme-btn');
+    if (btn) {
+      btn.innerHTML = theme === 'light' ? '<span>🌙</span>' : '<span>☀️</span>';
+    }
+  }
+
+  render() {
+    this.shadowRoot.innerHTML = `
+      <style>
+        .theme-btn {
+          background: none;
+          border: 2px solid currentColor;
+          color: inherit;
+          padding: 0.4rem;
+          border-radius: 50%;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 35px;
+          height: 35px;
+          transition: all 0.3s ease;
+          font-size: 1.1rem;
+        }
+        .theme-btn:hover {
+          background: oklch(0.5 0 0 / 0.1);
+          transform: scale(1.1);
+        }
+      </style>
+      <button class="theme-btn" aria-label="Toggle Theme"></button>
+    `;
+    this.shadowRoot.querySelector('.theme-btn').addEventListener('click', () => this.toggleTheme());
+  }
+}
+
 class CafeNav extends HTMLElement {
   constructor() {
     super();
@@ -22,9 +84,10 @@ class CafeNav extends HTMLElement {
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         :host(.scrolled) nav {
-          background-color: oklch(1 0 0 / 0.85);
+          background-color: var(--bg-primary);
+          opacity: 0.95;
           backdrop-filter: blur(12px);
-          color: oklch(0.25 0.02 40);
+          color: var(--text-primary);
           padding: 1rem 2rem;
           box-shadow: 0 4px 30px oklch(0 0 0 / 0.05);
         }
@@ -33,6 +96,11 @@ class CafeNav extends HTMLElement {
           font-size: 1.5rem;
           font-weight: 700;
           letter-spacing: 0.1em;
+        }
+        .nav-right {
+          display: flex;
+          align-items: center;
+          gap: 2rem;
         }
         ul {
           display: flex;
@@ -58,17 +126,22 @@ class CafeNav extends HTMLElement {
       </style>
       <nav>
         <div class="logo">CAFE L'AURA</div>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#menu">Menu</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div class="nav-right">
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <theme-toggle></theme-toggle>
+        </div>
       </nav>
     `;
   }
 }
+
+customElements.define('theme-toggle', ThemeToggle);
 
 // Add scroll listener to update cafe-nav state
 window.addEventListener('scroll', () => {

@@ -1,4 +1,4 @@
-// Pulse Planning - Core System
+// liveprd - Core System
 
 // --- Theme Management ---
 class ThemeToggle extends HTMLElement {
@@ -8,7 +8,7 @@ class ThemeToggle extends HTMLElement {
   }
   connectedCallback() {
     this.render();
-    const saved = localStorage.getItem('pulse-theme') || 'dark';
+    const saved = localStorage.getItem('liveprd-theme') || 'dark';
     document.documentElement.setAttribute('data-theme', saved);
     this.updateIcon(saved);
   }
@@ -16,7 +16,7 @@ class ThemeToggle extends HTMLElement {
     const current = document.documentElement.getAttribute('data-theme');
     const next = current === 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('pulse-theme', next);
+    localStorage.setItem('liveprd-theme', next);
     this.updateIcon(next);
   }
   updateIcon(theme) {
@@ -42,12 +42,12 @@ class ThemeToggle extends HTMLElement {
 customElements.define('theme-toggle', ThemeToggle);
 
 // --- AI Chat Component ---
-class PulseChat extends HTMLElement {
+class LiveprdChat extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
     this.messages = [
-      { role: 'ai', text: 'Pulse Planning 시스템에 오신 것을 환영합니다. 무엇을 도와드릴까요?' }
+      { role: 'ai', text: 'liveprd 시스템에 오신 것을 환영합니다. 무엇을 도와드릴까요?' }
     ];
   }
 
@@ -106,10 +106,10 @@ class PulseChat extends HTMLElement {
     input.onkeypress = (e) => e.key === 'Enter' && send();
   }
 }
-customElements.define('pulse-chat', PulseChat);
+customElements.define('liveprd-chat', LiveprdChat);
 
 // --- Hierarchical Viewer Components ---
-class PulseNode extends HTMLElement {
+class LiveprdNode extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -162,9 +162,9 @@ class PulseNode extends HTMLElement {
     this.shadowRoot.getElementById('header').onclick = () => hasChildren && this.toggle();
   }
 }
-customElements.define('pulse-node', PulseNode);
+customElements.define('liveprd-node', LiveprdNode);
 
-class PulseViewer extends HTMLElement {
+class LiveprdViewer extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -188,27 +188,28 @@ class PulseViewer extends HTMLElement {
         <p>기계 가독성을 갖춘 기획 데이터 구조 (L1 - L4)</p>
       </div>
       <div class="tree">
-        <pulse-node level="1" title="결제 시스템 고도화" status="Validated">
-          <pulse-node level="2" title="카카오페이 간편결제 추가" status="Draft">
-            <pulse-node level="3" title="API 스펙 정의" status="Draft">
-              <pulse-node level="4" title="결제 수단 선택 UI Flow" status="Draft"></pulse-node>
-            </pulse-node>
-            <pulse-node level="3" title="예외 케이스 처리" status="Draft">
-              <pulse-node level="4" title="네트워크 오류 팝업" status="Draft"></pulse-node>
-            </pulse-node>
-          </pulse-node>
-          <pulse-node level="2" title="정기 결제 시스템" status="Validated">
-             <pulse-node level="3" title="구독 모델 관리" status="Validated"></pulse-node>
-          </pulse-node>
-        </pulse-node>
+        <liveprd-node level="1" title="결제 시스템 고도화" status="Validated">
+          <liveprd-node level="2" title="카카오페이 간편결제 추가" status="Draft">
+            <liveprd-node level="3" title="API 스펙 정의" status="Draft">
+              <liveprd-node level="4" title="결제 수단 선택 UI Flow" status="Draft"></liveprd-node>
+            </liveprd-node>
+            <liveprd-node level="3" title="예외 케이스 처리" status="Draft">
+              <liveprd-node level="4" title="네트워크 오류 팝업" status="Draft"></liveprd-node>
+            </liveprd-node>
+          </liveprd-node>
+          <liveprd-node level="2" title="정기 결제 시스템" status="Validated">
+             <liveprd-node level="3" title="구독 모델 관리" status="Validated"></liveprd-node>
+          </liveprd-node>
+        </liveprd-node>
 
-        <pulse-node level="1" title="사용자 경험 (UX) 최적화" status="Validated">
-          <pulse-node level="2" title="반응형 레이아웃 강화" status="Validated">
-            <pulse-node level="3" title="Container Queries 적용" status="Validated"></pulse-node>
-          </pulse-node>
-        </pulse-node>
+        <liveprd-node level="1" title="사용자 경험 (UX) 최적화" status="Validated">
+          <liveprd-node level="2" title="반응형 레이아웃 강화" status="Validated">
+            <liveprd-node level="3" title="Container Queries 적용" status="Validated"></liveprd-node>
+          </liveprd-node>
+        </liveprd-node>
       </div>
+
     `;
   }
 }
-customElements.define('pulse-viewer', PulseViewer);
+customElements.define('liveprd-viewer', LiveprdViewer);
